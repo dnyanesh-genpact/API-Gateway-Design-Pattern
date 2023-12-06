@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: banking-gateway
+  cloud:
+    gateway:
+        routes:
+        - id: account_route
+          uri:
+            http://localhost:5051
+          predicates:
+          - Path=/banking/account/**
+        - id: fund_transfer_route
+          uri:
+            http://localhost:5052
+          predicates:
+          - Header=Service, Fund-Transfer
+         
+              
+          
+  main:
+    web-application-type: reactive
+          
